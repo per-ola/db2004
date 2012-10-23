@@ -1,0 +1,59 @@
+/*************************************************************************
+ *  Compilation:  javac Charge_III.java
+ *  Execution:    java Charge_III x y
+ *
+ *************************************************************************/
+
+public class Charge_III {
+    private double rx, ry;   // position
+    private double q;        // Charge_III
+
+    public Charge_III(double x0, double y0, double q0) {
+        rx = x0;
+        ry = y0;
+        q = q0;
+        dq = q + change(m);
+    }
+
+    public double change(double m) {
+    	double dq = q + m;
+    	return dq;
+    }
+
+
+    public double potentialAt(double x, double y) {
+        double k = 8.99e09;
+        double dx = x - rx;
+        double dy = y - ry;
+        double dq = change(m);
+        return k * dq / Math.sqrt(dx*dx + dy*dy);
+    }
+
+    public String toString() {
+        return q + " at " + "(" + rx + ", " + ry + ")";
+    }
+
+    public static void main(String[] args) {
+    	System.out.print("Ange punkt i planet samt laddning");
+    	double m = StdIn.readDouble();
+    	double m = StdIn.readDouble();
+    	double m = StdIn.readDouble();
+    	
+    	
+/*
+ * double q = Double.parseDouble(args[0]);
+   double x = Double.parseDouble(args[1]);
+   double y = Double.parseDouble(args[2]);
+	System.out.println("Ange laddningsmultipel");
+  	double m = StdIn.readDouble();
+*/
+        Charge_III c1 = new Charge_III(.51, .63, 21.3);
+        Charge_III c2 = new Charge_III(.13, .94, 81.9);
+        System.out.println(c1);
+        System.out.println(c2);
+        
+        double v1 = c1.potentialAt(q, x, y);
+        double v2 = c2.potentialAt(q, x, y);
+        StdOut.println(v1+v2);
+    }
+}
